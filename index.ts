@@ -1,6 +1,10 @@
+// require("dotenv").config({
+//     path:"/secret/.env"
+// });
+
 require("dotenv").config({
-    file:"./secret/.env"
-});
+    path: "/app/secret/.env"
+})
 import { file } from "bun";
 import express from "express";
 

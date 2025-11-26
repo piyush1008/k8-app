@@ -14,14 +14,14 @@ spec:
     spec:
       containers:
       - name : todoapptest
-        image: piyush1008/todo-app-test:2
+        image: piyush1008/todo-app-test:6
         ports:
         - containerPort: 3000
         volumeMounts:
           - name: env-file
             readOnly: true
             mountPath: "/app/secret"
-
+        # env:
         # - name : PORT
         #   valueFrom: 
         #     configMapKeyRef:
@@ -36,3 +36,18 @@ spec:
       - name: env-file
         secret:
           secretName: backend-secret
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  selector:
+    app: backend
+  ports:
+    - port: 3000
+      targetPort: 3000
+      nodePort: 30007
+  type: NodePort
