@@ -10,7 +10,7 @@ import express from "express";
 
 const app=express();
 
-
+const a="apple"
 
 console.log(process.env.DATABASE_URL)
 console.log(process.env.PORT)
