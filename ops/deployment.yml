@@ -17,25 +17,25 @@ spec:
         image: piyush1008/todo-app-test:6
         ports:
         - containerPort: 3000
-        volumeMounts:
-          - name: env-file
-            readOnly: true
-            mountPath: "/app/secret"
-        # env:
-        # - name : PORT
-        #   valueFrom: 
-        #     configMapKeyRef:
-        #       name: backend-config
-        #       key: port
-        # - name : DATABASE_URL
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: backend-secret
-        #       key: database_url
-      volumes:
-      - name: env-file
-        secret:
-          secretName: backend-secret
+        # volumeMounts:
+        #   - name: env-file
+        #     readOnly: true
+        #     mountPath: "/app/secret"
+        env:
+        - name : PORT
+          valueFrom: 
+            secretKeyRef:
+              name: backend-secret
+              key: port
+        - name : DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: backend-secret
+              key: database_url
+      # volumes:
+      # - name: env-file
+      #   secret:
+      #     secretName: backend-secret
 
 
 ---
